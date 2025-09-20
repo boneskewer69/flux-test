@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world
+  namespace: hello-world
+  labels:
+    app.kubernetes.io/name: hello-world
+spec:
+  rules:
+  - host: hello-world.int.fullbyte.de
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: hello-world
+            port:
+              number: 80
