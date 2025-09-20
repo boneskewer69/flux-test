@@ -18,6 +18,7 @@ spec:
   install:
     createNamespace: true
   values:
+    fullnameOverride: ingress-nginx-controller
     controller:
       service:
         annotations:
