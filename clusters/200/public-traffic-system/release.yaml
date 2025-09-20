@@ -2,9 +2,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: public-traffic
-  namespace: public-traffic-system
+  namespace: flux-system
 spec:
   interval: 5m
+  targetNamespace: public-traffic-system
   chart:
     spec:
       chart: ingress-nginx
