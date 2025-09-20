@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- metallb-release.yaml
-- metallb-source.yaml
-- metallb-config.yaml
+- default-ip-address-pool.yaml
+- default-l2advertisement.yaml
+- release.yaml
