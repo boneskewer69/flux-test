@@ -6,6 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: hello-world
 spec:
+  ingressClassName: public-traffic
   rules:
   - host: hello-world.int.fullbyte.de
     http:
