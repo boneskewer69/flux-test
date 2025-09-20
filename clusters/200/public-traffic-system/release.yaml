@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: public-traffic
+  namespace: ingress-nginx-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: "0.15.2"
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    controller:
+      service:
+        annotations:
+          metallb.io/address-pool: default-pool
+      replicaCount: 3
+      electionID: ingress-controller-leader
+      ingressClassResource:
+        name: public-traffic
+        enabled: true
+        default: false
+        controllerValue: "k8s.io/public-traffic"
+      ingressClassByName: true
+      ingressClass: public-traffic
+      config:
+        allow-snippet-annotations: "true"
+        proxy-buffer-size: 32k
+        proxy-busy-buffers-size: 32k
+        large-client-header-buffers: "4 32k"
+        # use-forwarded-headers: "true"
+        # enable-opentelemetry: "true"
+      addHeaders:
+        x-fullbyte-dc: phonk
+        x-fullbyte-region: mercury
+        x-fullbyte-ingress: public
