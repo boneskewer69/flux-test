@@ -40,6 +40,7 @@ spec:
         # use-forwarded-headers: "true"
         # enable-opentelemetry: "true"
       addHeaders:
-        x-fullbyte-dc: phonk
-        x-fullbyte-region: mercury
+        x-fullbyte-dc: mercury
+        x-fullbyte-region: euw
         x-fullbyte-ingress: public
+        x-fullbyte-cluster: phonk
